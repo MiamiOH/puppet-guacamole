@@ -3,12 +3,12 @@
 # Installation of Guacamole & provision
 # Considered to be private class.
 class guacamole::install (
-  String $server_version = $guacamole::params::server_version
+  String $server_version = $guacamole::params::server_version,
   String $guacd_listen_ip = $guacamole::params::guacd_listen_ip,
   String $guacd_listen_port = $guacamole::params::guacd_listen_port,
   Boolean $install_tomcat = $guacamole::params::install_tomcat,
   ) {
-    $tomcat_version = '8.5.23'
+    $tomcat_version = $guacamole::params::tomcat_version
     $closest_mirror = get_mirrors('https://www.apache.org/dyn/closer.cgi?as_json=1')
 
     if $install_tomcat {
