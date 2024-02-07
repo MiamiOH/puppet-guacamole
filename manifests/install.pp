@@ -3,10 +3,10 @@
 # Installation of Guacamole & provision
 # Considered to be private class.
 class guacamole::install (
-    String $server_version = '0.9.13',
-    String $guacd_listen_ip = '127.0.0.1',
-    String $guacd_listen_port = '4822',
-    Boolean $install_tomcat = true,
+  String $server_version = $guacamole::params::server_version
+  String $guacd_listen_ip = $guacamole::params::guacd_listen_ip,
+  String $guacd_listen_port = $guacamole::params::guacd_listen_port,
+  Boolean $install_tomcat = $guacamole::params::install_tomcat,
   ) {
     $tomcat_version = '8.5.23'
     $closest_mirror = get_mirrors('https://www.apache.org/dyn/closer.cgi?as_json=1')
@@ -33,7 +33,7 @@ class guacamole::install (
       File['/etc/guacamole/guacd.conf'] ~> Service['tomcat']
       tomcat::war { 'guacamole.war':
         catalina_base => '/opt/tomcat',
-        war_source    => "${closest_mirror}incubator/guacamole/${server_version}-incubating/binary/guacamole-${server_version}-incubating.war",
+        war_source    => "${closest_mirror}/guacamole/${server_version}/binary/guacamole-${server_version}.war",
       }
     }
 
@@ -44,7 +44,7 @@ class guacamole::install (
 
   archive { '/tmp/gcml/guacamole-server.tar.gz':
     ensure       => present,
-    source       => "${closest_mirror}incubator/guacamole/${server_version}-incubating/source/guacamole-server-${server_version}-incubating.tar.gz",
+    source       => "${closest_mirror}/guacamole/${server_version}/source/guacamole-server-${server_version}.tar.gz",
     extract      => true,
     creates      => "/tmp/gcml/guacamole-server-${server_version}-incubating/configure",
     cleanup      => true,

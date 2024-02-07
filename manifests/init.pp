@@ -12,10 +12,10 @@
 # @example
 #   Full example of usage included in examples/site.pp
 class guacamole (
-  String $server_version = '0.9.13',
-  String $guacd_listen_ip = '127.0.0.1',
-  String $guacd_listen_port = '4822',
-  Boolean $install_tomcat = true,
+  String $server_version = $guacamole::params::server_version
+  String $guacd_listen_ip = $guacamole::params::guacd_listen_ip,
+  String $guacd_listen_port = $guacamole::params::guacd_listen_port,
+  Boolean $install_tomcat = $guacamole::params::install_tomcat,
   ) {
     class { '::guacamole::install':
       server_version    => $server_version,
