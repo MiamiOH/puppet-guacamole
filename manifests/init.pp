@@ -21,6 +21,7 @@ class guacamole (
   ) {
     class { '::guacamole::install':
       server_version    => $server_version,
+      tomcat_version    => $tomcat_version,
       guacd_listen_ip   => $guacd_listen_ip,
       guacd_listen_port => $guacd_listen_port,
       install_tomcat    => $install_tomcat
