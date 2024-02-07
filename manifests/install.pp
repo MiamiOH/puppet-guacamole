@@ -57,7 +57,7 @@ class guacamole::install (
     options => '--with-init-dir=/etc/init.d',
     path    => "/sbin:/bin:/usr/bin:/tmp/gcml/guacamole-server-${server_version}-incubating"
   }
-  Archive['/tmp/gcml/guacamole-server.tar.gz'] ~> Guacamole::Build["/tmp/gcml/guacamole-server-${server_version}-incubating"] ~> Service['guacd']
+  Archive['/tmp/gcml/guacamole-server.tar.gz'] ~> Guacamole::Build["/tmp/gcml/guacamole-server-${server_version}"] ~> Service['guacd']
 
   file_line { 'guacamole-home-line':
     path  => '/etc/environment',
