@@ -16,17 +16,18 @@ class guacamole::preprovision inherits guacamole::install {
     ensure   => present,
     provider => yum
   }
-  package { 'nux-dextop-release':
-    ensure   => present,
-    provider => 'rpm',
-    require  => Package['epel-release'],
-    source   => 'http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm',
-  }
 
-  exec { '/bin/yum update -y':
-    refreshonly => true,
-    subscribe   => Package['nux-dextop-release']
-  }
+  #package { 'nux-dextop-release':
+  #  ensure   => present,
+  #  provider => 'rpm',
+  #  require  => Package['epel-release'],
+  #  source   => 'http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm',
+  #}
+
+  #exec { '/bin/yum update -y':
+  #  refreshonly => true,
+  #  subscribe   => Package['nux-dextop-release']
+  #}
 
   package { $packages: ensure => present }
   class { 'java': }
