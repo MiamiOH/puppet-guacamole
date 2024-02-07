@@ -46,16 +46,16 @@ class guacamole::install (
     ensure       => present,
     source       => "${closest_mirror}/guacamole/${server_version}/source/guacamole-server-${server_version}.tar.gz",
     extract      => true,
-    creates      => "/tmp/gcml/guacamole-server-${server_version}-incubating/configure",
+    creates      => "/tmp/gcml/guacamole-server-${server_version}/configure",
     cleanup      => true,
     extract_path => '/tmp/gcml/',
-    notify       => Guacamole::Build["/tmp/gcml/guacamole-server-${server_version}-incubating"]
+    notify       => Guacamole::Build["/tmp/gcml/guacamole-server-${server_version}"]
     # require => File[$install_path],
   }
 
-  guacamole::build { "/tmp/gcml/guacamole-server-${server_version}-incubating":
+  guacamole::build { "/tmp/gcml/guacamole-server-${server_version}":
     options => '--with-init-dir=/etc/init.d',
-    path    => "/sbin:/bin:/usr/bin:/tmp/gcml/guacamole-server-${server_version}-incubating"
+    path    => "/sbin:/bin:/usr/bin:/tmp/gcml/guacamole-server-${server_version}"
   }
   Archive['/tmp/gcml/guacamole-server.tar.gz'] ~> Guacamole::Build["/tmp/gcml/guacamole-server-${server_version}"] ~> Service['guacd']
 

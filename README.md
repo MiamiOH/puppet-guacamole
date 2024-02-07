@@ -81,7 +81,7 @@ Boolean. Specifies should this module install Tomcat 8 for you. Defaults to true
 $closest_mirror = get_mirrors('https://www.apache.org/dyn/closer.cgi?as_json=1')
 tomcat::war { 'guacamole.war':
   catalina_base => '/opt/tomcat',
-  war_source    => "${closest_mirror}incubator/guacamole/${server_version}-incubating/binary/guacamole-${server_version}-incubating.war",
+  war_source    => "${closest_mirror}/guacamole/${server_version}/binary/guacamole-${server_version}.war",
 }
 ```
 #### guacamole::user
