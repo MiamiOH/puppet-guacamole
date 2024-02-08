@@ -12,7 +12,7 @@ define guacamole::build(
   $user    = 'root',
   $path    = '/sbin:/bin:/usr/sbin:/usr/bin:/opt/puppetlabs/bin',
   $timeout = '0',
-  $options = ''
+  $options = '--with-init-dir=/etc/init.d --with-systemd-dir=/usr/lib/systemd '
 ) {
 
   $options_real = join([$options], ' ')
