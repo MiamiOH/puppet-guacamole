@@ -8,7 +8,7 @@ class guacamole::preprovision inherits guacamole::install {
   'cairo-devel', 'libjpeg-turbo-devel', 'libpng-devel', 'uuid-devel',
   'ffmpeg-devel', 'freerdp-devel', 'pango-devel', 'libssh2-devel',
   'libtelnet-devel', 'libvncserver-devel', 'pulseaudio-libs-devel',
-  'openssl-devel', 'libvorbis-devel', 'libwebp-devel', 'jq'
+  'openssl-devel', 'libvorbis-devel', 'libwebp-devel', 'jq', 'libgcrypt-devel'
   ]
 
 

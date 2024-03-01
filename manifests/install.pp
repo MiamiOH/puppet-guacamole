@@ -17,7 +17,7 @@ class guacamole::install (
       }
       tomcat::instance { 'default':
         catalina_home  => '/opt/tomcat',
-        #manage_service => true,
+        manage_service => true,
       }
       service { 'tomcat':
         ensure     => running,
@@ -28,7 +28,7 @@ class guacamole::install (
         hasstatus  => true,
         hasrestart => true,
         #require    => Tomcat::Instance['default'],
-        #subscribe  => File['/etc/guacamole/guacd.conf']
+        subscribe  => File['/etc/guacamole/guacd.conf']
       }
       File['/etc/guacamole/guacd.conf'] ~> Service['tomcat']
       tomcat::war { 'guacamole.war':
@@ -70,12 +70,12 @@ class guacamole::install (
     content => template('guacamole/guacd.conf.erb'),
     notify  => Service['guacd'],
   }
-  file { '/etc/guacamole/guacamole.properties':
-    ensure  => file,
-    owner   => 'tomcat',
-    group   => 'tomcat',
-    content => template('guacamole/guacamole.properties.erb'),
-  }
+  # file { '/etc/guacamole/guacamole.properties':
+  #  ensure  => file,
+  #  owner   => 'tomcat',
+  #  group   => 'tomcat',
+  #  content => template('guacamole/guacamole.properties.erb'),
+  # }
 
   service { 'guacd':
     ensure => running,
