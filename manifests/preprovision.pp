@@ -15,7 +15,17 @@ class guacamole::preprovision inherits guacamole::install {
   package { 'epel-release':
     ensure   => present,
     provider => yum
-  }
+  } -> package { 'rpmfusion-free-release':
+    ensure       => installed,
+    provider     => rpm,
+    source       => 'https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm',
+    install_only => true,
+  } -> package { 'rpmfusion-nonfree-release':
+    ensure       => installed,
+    provider     => rpm,
+    source       => 'https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm',
+    install_only => true,
+  } -> package { $packages: ensure => present }
 
   #package { 'nux-dextop-release':
   #  ensure   => present,
@@ -29,7 +39,6 @@ class guacamole::preprovision inherits guacamole::install {
   #  subscribe   => Package['nux-dextop-release']
   #}
 
-  package { $packages: ensure => present }
   class { 'java': }
 
 }
