@@ -5,7 +5,7 @@
 # Considered to be private class.
 class guacamole::preprovision inherits guacamole::install {
   $packages = [
-  'cairo-devel', 'libjpeg-turbo-devel', 'libpng-devel', 'uuid-devel',
+  'cairo-devel', 'libjpeg-turbo-devel', 'libpng-devel', 'uuid-devel', 'gcc',
   'ffmpeg-devel', 'freerdp-devel', 'pango-devel', 'libssh2-devel',
   'libtelnet-devel', 'libvncserver-devel', 'pulseaudio-libs-devel',
   'openssl-devel', 'libvorbis-devel', 'libwebp-devel', 'jq', 'libgcrypt-devel'
