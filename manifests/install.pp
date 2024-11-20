@@ -11,9 +11,11 @@ class guacamole::install (
   ) {
     $closest_mirror = get_mirrors('https://www.apache.org/dyn/closer.cgi?as_json=1')
 
+    $tomcat_major_version = $tomcat_version.split('.')[0]
+
     if $install_tomcat {
       tomcat::install { '/opt/tomcat':
-        source_url => "${closest_mirror}tomcat/tomcat-9/v${tomcat_version}/bin/apache-tomcat-${tomcat_version}.tar.gz",
+        source_url => "${closest_mirror}tomcat/tomcat-${tomcat_major_version}/v${tomcat_version}/bin/apache-tomcat-${tomcat_version}.tar.gz",
       }
       tomcat::instance { 'default':
         catalina_home  => '/opt/tomcat',
