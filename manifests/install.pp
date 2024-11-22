@@ -11,7 +11,7 @@ class guacamole::install (
   ) {
     $closest_mirror = get_mirrors('https://www.apache.org/dyn/closer.cgi?as_json=1')
 
-    $tomcat_major_version = $tomcat_version.split('.')[0]
+    $tomcat_major_version = split($tomcat_version, '[.]')[0]
 
     if $install_tomcat {
       tomcat::install { '/opt/tomcat':
